@@ -1,0 +1,11 @@
+.container{
+   background-image: url("./image/background-image.jpg");
+   background-size: cover;
+   background-repeat: no-repeat ;
+}
+
+@media (min-width: 600px) and (max-width: 1024px){
+   .container{
+      width: 100vw;
+   }
+}
