@@ -4,8 +4,11 @@
 // import characters from './data.js';
 import './App.css';
 import Cards from './components/cards/Cards.jsx';
+import About from "./components/About/About.jsx";
 import Nav from './components/nav/Nav';
+import Detail from './components/Detail/detail';
 import { useState } from "react";
+import { Route, Routes } from 'react-router-dom';
 
 
 
@@ -15,19 +18,26 @@ function App() {
    let [characters, setCharacters] = useState([]);
 
    function onSearch(id) {
-      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      const URL_BASE = "https://rickandmortyapi.com/api/character/";
+
+      // if (characters.find((char) => char.id === id)) {
+      //    return alert("personaje repetido")
+      // }
+
+      fetch(`${URL_BASE}/${id}`)
          .then(response => response.json())
          .then((data) => {
-            if (data.name && !characters.find(char => char.id === data.id)) {
+            if (data.name) {
                setCharacters((oldChars) => [...oldChars, data]);
             } else {
                window.alert('¡No hay personajes con este ID!');
             }
          });
    }
+
    const onclose = (id) => {
       //filter ..... no modifica el array original 
-      setCharacters(characters.filter((char) => char.id != id));
+      setCharacters(characters.filter((char) => char.id !== id));
    };
 
    // const onSearch = (id) => {
@@ -56,13 +66,23 @@ function App() {
    //    console.log("hola prueba ");
    // }
 
-
+   // Nav debe que aparecer en todas las rutas.
+   // Cards debe aparecer solo en la ruta /home.
+   // About debe aparecer solo en la ruta /about.
+   // Detail debe aparecer solo en la ruta /detail/:id.
    return (
       <div className='container'>
-         {/* <SearchBar onSearch={(characterID) => window.alert(characterID)} /> */}
          <Nav onSearch={onSearch} />
          <hr />
-         <Cards characters={characters} onClose = {onclose}/>
+         <Routes>
+            <Route
+               path="/home"
+               element={<Cards characters={characters} onClose={onclose} />}
+            />
+            <Route path="/about" element={<About c={"c"}/>} />
+            <Route path="/detail/:detailId" element={<Detail/> } />
+
+         </Routes>
       </div>
    );
 }

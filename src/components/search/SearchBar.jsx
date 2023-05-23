@@ -1,5 +1,5 @@
 import style from "./SearchBar.module.css"
-import imageLogo from "../../image/logo.png"
+// import imageLogo from "../../image/logo.png"
 import { useState } from "react"
 
 export default function SearchBar({ onSearch }) {
@@ -23,11 +23,11 @@ export default function SearchBar({ onSearch }) {
 
    return (
       <div className={style.containerSearch}>
-         <img
+         {/* <img
             src={imageLogo}
             alt="logo Ricky and Morty"
             className={style.logo}
-         />
+         /> */}
          <div className={style.containerInput}>
             <input
                type="search"
