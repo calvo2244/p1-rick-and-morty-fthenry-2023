@@ -1,6 +1,6 @@
 .container{
-   background-image: url("./image/background-image.jpg");
-   background-size: cover;
+   background-image: url("./image/background-image.png");
+   background-size: 100%;
    background-repeat: no-repeat ;
 }
 

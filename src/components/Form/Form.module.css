@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: green;
+}
+body{
+    width: 100%;
+    height: 100vh;
+}
+.divcontainer{
+    width: 30%;
+    height: max-content;
+    padding: 1em;
+    margin: 5%;
+    background-color: gainsboro;
+    border-radius: 20px;
+    
+    
+}
+h1{
+    background-color: transparent;
+    text-align: center;
+}
+
+.divusername{
+    display: flex ;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 2%;
+}
+.divpassword{
+    display: flex ;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 2%;
+}
+
+.divcontainer button{
+   width: auto;
+   height: auto;
+   /* margin: 1em; */
+   padding: 4px;
+   justify-items: center;
+   
+
+}
+.rigthlogin form{
+    height: 100%;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+}
