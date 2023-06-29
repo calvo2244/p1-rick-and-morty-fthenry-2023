@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 
 class Nav extends React.Component {
     constructor(props) {
-        super(props);
+        super();
     }
     render() {
-        //  {console.log(this.props);}
+        // console.log(this.props);
+        let {onSearch} = this.props;
         return (
             <div className={styled.containerNav}>
                 <div className={styled.divLogo}>
@@ -26,9 +27,12 @@ class Nav extends React.Component {
                 <Link to={"/about"}>
                     <h3>| ABOUT |</h3>
                 </Link>
+                {/* <Link to={"/"}> */}
+                    <h3 onClick={this.props.logout}>| LOGOUT |</h3>
+                {/* </Link> */}
                 </div>
                 <div className={styled.divSearchBar}>
-                <SearchBar onSearch={this.props.onSearch} />
+                <SearchBar onSearch={onSearch} />
                 </div>
             </div>
         );

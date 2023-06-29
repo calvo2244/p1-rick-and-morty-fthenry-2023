@@ -3,12 +3,9 @@ import Cards from './components/cards/Cards.jsx';
 import About from "./components/About/About.jsx";
 import Nav from './components/nav/Nav';
 import Detail from './components/Detail/detail';
+import FormLogin from './components/FormLogin/FormLogin.jsx';
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import Form from './components/Form/Form.jsx';
-
-
-
 
 function App() {
 
@@ -20,15 +17,11 @@ function App() {
    const [access, setAccess] = useState(false);
    const navigate = useNavigate();
 
-   //App.js
-   useEffect(() => {
-      !access && navigate("/");
-   }, [access]);
 
 
    //! CREDENCIALES FAKE
    const username = "calvo2244@hotmail.com"
-   const password = "Heag6342"
+   const password = "Pass1234@"
 
 
 
@@ -56,24 +49,34 @@ function App() {
       setCharacters(characters.filter((char) => char.id !== id));
    };
 
-   const login = (userData) => {
+   function login (userData){
+      // console.log("ingresa a login",userData);
       if (userData.username === username && userData.password === password) {
          setAccess(true);
-         navigate("/home");
+         return navigate("/home");
       } else {
          alert("credenciales incorrectas")
       }
-
+   };
+   const logout = () => {
+         setAccess(false);
+         navigate("/");
+         // console.log("se esta cerrando");
    };
 
+   //App.js
+   useEffect(() => {
+      !access && navigate("/");
+      // console.log("aplica useeffect");
+   }, [access]);
 
    //!RENDER
    return (
       <div className='container'>
-         {pathname !== "/" && <Nav onSearch={onSearch} />}
+         {pathname !== "/" && <Nav onSearch={onSearch} logout={logout} />}
          <hr />
          <Routes>
-            <Route path='/' element={<Form login={login} />} />
+            <Route path='/' element={<FormLogin login={login} />} />
             <Route
                path="/home"
                element={<Cards characters={characters} onClose={onclose} />}
