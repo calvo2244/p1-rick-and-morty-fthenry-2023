@@ -54,10 +54,19 @@
         border-radius: 18px;
 }
 
-.btn{
-    margin-left: 90%;
-    width: 20px;
-    height: 20px;
+.btnFav{
+    position: flex;
+    margin-left: 0%;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10%;
+
+}
+.btnClose{
+    position: flex;
+    margin-left: 2%;
+    width: 25px;
+    height: 25px;
     margin-bottom: 10%;
 
 }

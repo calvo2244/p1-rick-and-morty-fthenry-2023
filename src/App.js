@@ -4,6 +4,7 @@ import About from "./components/About/About.jsx";
 import Nav from './components/nav/Nav';
 import Detail from './components/Detail/detail';
 import FormLogin from './components/FormLogin/FormLogin.jsx';
+import Favorites from "./components/Favorites/Favorites.jsx"
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
@@ -83,6 +84,7 @@ function App() {
             />
             <Route path="/about" element={<About c={"c"} />} />
             <Route path="/detail/:detailId" element={<Detail />} />
+            <Route path="/favorites" element={<Favorites onClose={onclose}/>} />
 
          </Routes>
       </div>

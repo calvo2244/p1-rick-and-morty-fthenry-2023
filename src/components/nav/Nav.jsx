@@ -27,6 +27,9 @@ class Nav extends React.Component {
                 <Link to={"/about"}>
                     <h3>| ABOUT |</h3>
                 </Link>
+                <Link to={"/favorites"}>
+                    <h3>| fAVORITES |</h3>
+                </Link>
                 {/* <Link to={"/"}> */}
                     <h3 onClick={this.props.logout}>| LOGOUT |</h3>
                 {/* </Link> */}
