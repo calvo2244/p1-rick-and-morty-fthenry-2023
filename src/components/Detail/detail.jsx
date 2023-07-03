@@ -15,7 +15,7 @@ const Detail = () => {
             .then((response) => {
                 setCharacter(response.data)
             });
-    }, []);
+    }, [params.detailId]);
 
     return (
         <div className={styled.containerDetail}>

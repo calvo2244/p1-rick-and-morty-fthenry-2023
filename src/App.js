@@ -69,7 +69,7 @@ function App() {
    useEffect(() => {
       !access && navigate("/");
       // console.log("aplica useeffect");
-   }, [access]);
+   }, [access,navigate]);
 
    //!RENDER
    return (

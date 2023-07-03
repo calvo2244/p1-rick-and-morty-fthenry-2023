@@ -1,39 +1,44 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFav, removeFav } from "../../redux/action";
 
 import { useEffect, useState } from "react";
 
-function Card( props) {
+export default function Card(props) {
 
-   const { id, name, status, species, gender, origin, image, onClose, addFav, removeFav, myFavorites } = props
+   const { id, name, status, species, gender, origin, image, onClose } = props
 
    //! hook
-   // segunda forma mapDispatchToProp
-   // const dispatch = useDispatch
-   // dispatch(addFav({}))
 
+   const dispatch = useDispatch()
    const [isFav, setItsFav] = useState(false)
+   const {myFavorites} = useSelector((s) => s)
+
 
    function handleFavorite() {
       if (isFav) {
          setItsFav(false)
-         removeFav(id)
+         dispatch(removeFav(id))
       } else {
          setItsFav(true);
-         addFav(props);
+         dispatch(addFav(props));
       }
    }
-   useEffect(()=>{
+   useEffect(() => {
       myFavorites.forEach((fav) => {
-         if (fav.id=== props.id) {
-            setItsFav(true);            
-         }         
+         if (fav.id === props.id) {
+            setItsFav(true);
+         }
       });
 
-   },[myFavorites]);
+   }, [myFavorites,props.id]);
+
+   function superClouse() {
+      onClose(id)
+      dispatch(removeFav(id))
+   }
 
    return (
       <div className={style.container}>
@@ -48,20 +53,20 @@ function Card( props) {
 
 
             <div className={style.back}>
-                  {
-                     isFav ? (
-                        <button className={style.btnFav}  onClick={handleFavorite}>❤️</button>
-                     ) : (
-                        <button className={style.btnFav} onClick={handleFavorite}>🤍</button>
-                     )
-                  }
-                  <button
-                     className={style.btnClose}
-                     // onClick={onClose}> X  //se remplaza por funcion para ejecutar 
-                     onClick={() => onClose(id)}> X
-                  </button>
-               
+               {
+                  isFav ? (
+                     <button className={style.btnFav} onClick={handleFavorite}>❤️</button>
+                  ) : (
+                     <button className={style.btnFav} onClick={handleFavorite}>🤍</button>
+                  )
+               }
+               <button
+                  className={style.btnClose}
+                  onClick={superClouse}> X
+               </button>
+
                <Link to={`/detail/${id}`}>
+                  <h2>{id}</h2>
                   <h2>{name}</h2>
                   <h2>{status}</h2>
                   <h2>{species}</h2>
@@ -74,17 +79,17 @@ function Card( props) {
    );
 }
 
-function mapStateToProp(state) {
-   return {
-      myFavorites: state.myFavorites
-   };
-}
-function mapDispatchToProp(dispatch) {
-   return {
-      addFav: (characters) => dispatch(addFav(characters)),
-      removeFav: (id) => dispatch(removeFav(id)),
+// function mapStateToProp(state) {
+//    return {
+//       myFavorites: state.myFavorites
+//    };
+// }
+// function mapDispatchToProp(dispatch) {
+//    return {
+//       addFav: (characters) => dispatch(addFav(characters)),
+//       removeFav: (id) => dispatch(removeFav(id)),
 
-   }
-}
+//    }
+// }
 
-export default connect(mapStateToProp, mapDispatchToProp)(Card);
+// export default connect(mapStateToProp, mapDispatchToProp)(Card);

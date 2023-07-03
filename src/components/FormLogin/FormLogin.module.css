@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: green;
+    /* color: rgb(255, 255, 255); */
 }
 body{
     width: 100%;
