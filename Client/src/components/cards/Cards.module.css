@@ -1,0 +1,12 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    margin: 5% 5% 0% 5%;
+}
+
+@media(min-width: 400px) and (max-width: 700px){
+    .cards{
+        justify-content: center;
+    }
+}
